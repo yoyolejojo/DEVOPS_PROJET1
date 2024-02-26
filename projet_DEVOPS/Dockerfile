@@ -1,27 +1,22 @@
-FROM alpine:3.18
-ENV NODE_VERSION 21.6.2
-
-CMD ["node",  "-v"]
-# Installing libvips-dev for sharp Compatibility
-RUN apk update && apk add --no-cache build-base gcc autoconf automake zlib-dev libpng-dev nasm bash vips-dev git
-# ARG NODE_ENV=development
-# ENV NODE_ENV=${NODE_ENV}
-
-WORKDIR /opt/
-COPY package.json package-lock.json ./
-RUN npm cache clean --force
-RUN npm install --ignore-scripts=false --foreground-scripts --verbose sharp
-RUN npm install -g node-gyp
-# RUN npm install sharp 
-RUN npm config set fetch-retry-maxtimeout 600000 -g && npm install
-#RUN npm install --platform=linuxmusl --arch=x64 sharp
-ENV PATH /opt/node_modules/.bin:$PATH
-# RUN npm rebuild --verbose sharp
+FROM node:18-alpine
+# Installing libvips-dev for sharp Compatability
+RUN apk update && apk add  build-base gcc autoconf automake zlib-dev libpng-dev nasm bash vips-dev
+ARG NODE_ENV=development
+ENV NODE_ENV=${NODE_ENV}
 WORKDIR /opt/app
-COPY . .
-RUN chown -R node:node /opt/app
-USER node
-RUN npm ci
-RUN ["npm", "run", "build"]
+COPY ./package.json ./yarn.lock ./
+# ENV PATH /opt/node_modules/.bin:$PATH
+RUN yarn config set network-timeout 600000 -g && yarn install
+RUN yarn add --verbose --platform=linuxmusl --arch=x64 sharp
+# WORKDIR /opt/app
+COPY ./ .
+RUN yarn build
 EXPOSE 1337
-CMD ["npm", "run", "develop"]
+CMD ["yarn", "develop"]
+
+
+# RN EBADENGINE Unsupported engine {                                                                                     
+#  => => # npm WARN EBADENGINE   package: '@strapi/utils@4.20.1',                                                                       
+#  => => # npm WARN EBADENGINE   required: { node: '>=18.0.0 <=20.x.x', npm: '>=6.0.0' },                                               
+#  => => # npm WARN EBADENGINE   current: { node: 'v21.6.2', npm: '10.2.4' }                                                            
+#  => => # npm WARN EBADENGINE }            
