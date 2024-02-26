@@ -1,0 +1,3 @@
+[submodule "projet_DEVOPS/projet_DEVOPS/opsci-strapi-frontend"]
+	path = projet_DEVOPS/projet_DEVOPS/opsci-strapi-frontend
+	url = https://github.com/arthurescriou/opsci-strapi-frontend.git

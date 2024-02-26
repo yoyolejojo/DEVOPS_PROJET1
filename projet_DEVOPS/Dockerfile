@@ -14,9 +14,3 @@ RUN yarn build
 EXPOSE 1337
 CMD ["yarn", "develop"]
 
-
-# RN EBADENGINE Unsupported engine {                                                                                     
-#  => => # npm WARN EBADENGINE   package: '@strapi/utils@4.20.1',                                                                       
-#  => => # npm WARN EBADENGINE   required: { node: '>=18.0.0 <=20.x.x', npm: '>=6.0.0' },                                               
-#  => => # npm WARN EBADENGINE   current: { node: 'v21.6.2', npm: '10.2.4' }                                                            
-#  => => # npm WARN EBADENGINE }            

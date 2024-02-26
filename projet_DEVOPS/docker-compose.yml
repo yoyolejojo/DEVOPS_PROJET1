@@ -50,6 +50,18 @@ services:
       - "5432:5432"
     networks:
       - strapi
+  strapi-frontend:
+    container_name: strapi-frontend
+    build:
+      context: ./opsci-strapi-frontend
+    ports:
+      - "5173:5173"
+    networks:
+      - strapi
+    volumes:
+      - ./opsci-strapi-frontend:/app
+
+
 
 volumes:
   strapi-data:
