@@ -1,4 +1,4 @@
-cd prjet_DEVOPS/opsci-strapi-frontend
+cd projet_DEVOPS/opsci-strapi-frontend
 yarn install
 
 cd ../
