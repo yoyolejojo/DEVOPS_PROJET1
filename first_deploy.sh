@@ -1,5 +1,5 @@
 cd projet_DEVOPS/opsci-strapi-frontend
-yarn install
+yarn install        # Permet d'installer vite 
 
 cd ../
 sudo docker-compose build
