@@ -12,6 +12,11 @@ d'une base de donnée Postgresql et d'un frontend React
 
 ## Installation de l'application
 
+Les scripts suivants sont à utilisé seulement la premiere fois que vous 
+recupérer le depot, ils vont deployer l'application apres avoir fait quelques 
+installations complémentaires. Si vous utilisez plusieurs fois l'application, 
+veuillez utiliser le script dans la section "Lancer l'application"
+
 ### Sous linux
 
     ./first_deploy.sh
